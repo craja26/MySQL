@@ -1,0 +1,5 @@
+## connect MySQL using terminal
+mysql -u root -p
+
+mysql --user=root mysql -p
+

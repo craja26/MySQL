@@ -4,4 +4,4 @@ mysql -u root -p
 mysql --user=root mysql -p
 
 
-<span style="color: green"> Some green text </span>
+

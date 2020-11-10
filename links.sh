@@ -6,3 +6,7 @@ https://mariadb.com/resources/blog/how-to-restore-a-single-database-from-mariadb
 
 # MySQL upgrade from 5.7 to 8.0
 https://lefred.be/content/how-to-safely-upgrade-to-mysql-8-0/
+
+# MySQL  and MariaDB few upgrade scenarios.
+https://www.layerstack.com/resources/tutorials/How-to-upgrade-MySQL-MariaDB-on-Linux-Cloud-Servers
+

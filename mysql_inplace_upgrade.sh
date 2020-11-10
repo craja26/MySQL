@@ -2,6 +2,8 @@
 # MySQL upgrade from 5.7 to 8.0 steps:
 /* ------------------------------------ */
 # Note: take full backup before starting any changes.
+# See this below link as reference.
+# https://lefred.be/content/how-to-safely-upgrade-to-mysql-8-0/
 
 mysqlcheck -u <username> -p --all-databases --check-upgrade
 

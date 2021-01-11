@@ -1,7 +1,7 @@
-<<COMMENT1 The MySQL servers can be upgraded by performing either an INPLACE upgrade or LOGICAL upgrade.
+The MySQL servers can be upgraded by performing either an INPLACE upgrade or LOGICAL upgrade.
 The INPLACE upgrade involves shutting down the MySQL 5.7 server, replacing the old binaries with MySQL 8.0 binaries and then starting the MySQL 8.0 server on the old data directory.
 The LOGICAL upgrade involves exporting SQL from the MySQL 5.7 version using a backup or export utility such as mysqldump/xtrabackup/mydumper installing the MySQL 8.0 binaries, and then applying the SQL to the new MySQL version.
-COMMENT1
+
 Following are the steps involved in to upgrade MySQL 5.7 to MySQL 8.0
 
 Step 1. Run MySQL upgrade checker

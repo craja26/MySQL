@@ -56,3 +56,22 @@ Here is command to unblock it.
 		vim /etc/selinux/config
 	uncomment SELINUX(might be at line #07) and update this line like below
 		SELINUX=permissive
+
+
+vim /etc/security/limits.conf
+# MySQL Open File Limits
+mysql   hard    nofile  65535
+mysql   soft    nofile  65535
+ 
+#XtraBackup Open Files Limit
+root    hard    nofile  65535
+root    soft    nofile  65535
+ 
+systemctl edit mysqld
+ 
+[Service]
+LimitNOFILE=65535
+ 
+systemctl daemon-reload
+systemctl restart mysqld
+

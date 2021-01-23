@@ -38,9 +38,7 @@ get_restore_options.sh
 
 Note: Scripts are using pigz for compression and decompression. Please install it or change zip mechanism according to current environment.
 
-## Sample backup command using xbstream and pigz
- xtrabackup   --defaults-file=/etc/my.cnf  --backup  --user=backup --password=<password> --parallel=1  --stream=xbstream  --socket=/data/mysql/mysql.sock   --history=YYYYMMDD_HHMM  --extra-lsndir=/backup/mysql_backup/full/checkpoints/YYYYMMDD_HHMM   |  pigz  -1  > /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz
- 
+
 ## Backup example:
   xtrabackup --backup --user=<user> --password=<password> --target-dir=/backup/mysql_backup/
 ## Restore sample steps:
@@ -63,4 +61,15 @@ Note: Scripts are using pigz for compression and decompression. Please install i
   SHOW SLAVE STATUS\G
  
 
+## Backup and restore using xtrabackup XBStream and pigz.
+# Backup using xbstream and pigz
+	xtrabackup   --defaults-file=/etc/my.cnf  --backup  --user=backup --password=<password> --parallel=1  --stream=xbstream  --socket=/data/mysql/mysql.sock   --history=YYYYMMDD_HHMM  --extra-lsndir=/backup/mysql_backup/full/checkpoints/YYYYMMDD_HHMM   |  pigz  -1  > /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz
  
+# Unzip backup file
+	unpigz  -c  /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz | xbstream   -x -C  /backup/mysql_restore/full/YYYYMMDD_HHMM-full
+ 
+# Prepare backup
+	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --prepare --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full
+
+# copy-back or move-back
+	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --move-back --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full

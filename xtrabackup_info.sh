@@ -71,5 +71,5 @@ Note: Scripts are using pigz for compression and decompression. Please install i
 # Prepare backup
 	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --prepare --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full
 
-# copy-back or move-back
-	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --move-back --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full
+# copy-back or move-back with parellel processing
+	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --move-back --parallel=6 --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full

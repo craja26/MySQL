@@ -166,3 +166,18 @@ printf "%s\n" "Stopping backup at $runTime"
 
 exit
 /***************/
+
+
+/********** Restore single database using myloader ***********/
+myloader \
+--database=sqllogging \
+--directory=/backup/mysql_backup/mydumper_backup/mydumper/sqllogging/sqllogging-202101241024 \
+--queries-per-transaction=50000 \
+--threads=10 \
+--compress-protocol \
+--verbose=3 \
+--user=root \
+--password=<password>
+
+
+

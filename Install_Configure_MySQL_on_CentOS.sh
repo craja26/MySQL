@@ -37,6 +37,14 @@ Install MySQL on CentOs-7
 		cp -r /var/lib/mysql /var/lib/mysql.bak
 	Move Data files to new directory
 		rsync -avX /var/lib/mysql/ /data/mysql/data
+		
+		--SELinux context apply on new data directory
+			# semanage fcontext -a -t mysqld_db_t "/data/mysql(/.*)?"
+			# restorecon -v '/data/mysql/logs'
+			# restorecon -v '/data/mysql/binlog'
+			# restorecon -v '/data/mysql/tmp'
+			# restorecon -v '/data/mysql'
+			
 	Backup old my.cnf fille.
 		cp /etc/my.cnf /etc/my.cnf.bak
 	Replace standard cnf file. 

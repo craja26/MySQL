@@ -45,7 +45,7 @@ Note: Scripts are using pigz for compression and decompression. Please install i
 1. We need to prepare backup file before run restore command.
   xtrabackup --prepare --user=<user> --password=<password> --target-dir=/backup/mysql_backup/
 2. We can use --copy-back or --move-back parameter to restore databases.
-  xtrabackup --move-back --user=rchikkala --password=D3v1l@27 --target-dir=/backup/mysql_backup/db9/
+  xtrabackup --move-back --user=rchikkala --password=pwd --target-dir=/backup/mysql_backup/db9/
 
 
 ## Configure replication

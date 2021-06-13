@@ -70,7 +70,7 @@ Note: Scripts are using pigz for compression and decompression. Please install i
  
 # Unzip backup file
 	unpigz  -c  /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz | xbstream   -x -C  /backup/mysql_restore/full/YYYYMMDD_HHMM-full
-	# if pigz backup is taken using gzip, use below command.
+	# if backup is taken using gzip, use below command.
 	gunzip  -c  /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz | xbstream   -x -C  /backup/mysql_restore/full/YYYYMMDD_HHMM-full
  
 # Prepare backup

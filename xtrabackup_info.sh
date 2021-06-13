@@ -64,9 +64,14 @@ Note: Scripts are using pigz for compression and decompression. Please install i
 ## Backup and restore using xtrabackup XBStream and pigz.
 # Backup using xbstream and pigz
 	xtrabackup   --defaults-file=/etc/my.cnf  --backup  --user=backup --password=<password> --parallel=1  --stream=xbstream  --socket=/data/mysql/mysql.sock   --history=YYYYMMDD_HHMM  --extra-lsndir=/backup/mysql_backup/full/checkpoints/YYYYMMDD_HHMM   |  pigz  -1  > /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz
+	#if pigz is not installed use gzip.
+	xtrabackup   --defaults-file=/etc/my.cnf  --backup  --user=backup --password=<password> --parallel=1  --stream=xbstream  --socket=/data/mysql/mysql.sock   --history=YYYYMMDD_HHMM  --extra-lsndir=/backup/mysql_backup/full/checkpoints/YYYYMMDD_HHMM   |  gzip  -1  > /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz
+	
  
 # Unzip backup file
 	unpigz  -c  /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz | xbstream   -x -C  /backup/mysql_restore/full/YYYYMMDD_HHMM-full
+	# if pigz backup is taken using gzip, use below command.
+	gunzip  -c  /backup/mysql_backup/full/YYYYMMDD_HHMM-full.gz | xbstream   -x -C  /backup/mysql_restore/full/YYYYMMDD_HHMM-full
  
 # Prepare backup
 	xtrabackup  --defaults-file=/etc/my.cnf  --socket=/data/mysql/mysql.sock  --prepare --target-dir=/backup/mysql_restore/full/YYYYMMDD_HHMM-full
